@@ -1,5 +1,5 @@
 import strutils, strformat, sequtils, sugar, os, asyncfile,
-        asyncdispatch, std/algorithm, times
+        asyncdispatch, std/algorithm, times, tables
 import nmark
 
 type Meta* = object
@@ -29,6 +29,18 @@ proc metaParser(rawData: string, fileName: string): Meta =
         t.fileName = fileName
     return t
 
+proc metaParserTwo(rawData: string, fileName: string): Table[string, string] =
+    var metaSeq = initTable[string, string]()
+
+    metaSeq["fileName"] = fileName
+
+    var lined = rawData.split("---")[1].split("\n")
+    lined = lined.filter((x) => x != "")
+    for value in lined.map((x) => x.split(":").map((x) => x.strip)):
+        metaSeq[value[0]] = value[1]
+
+    return metaSeq
+
 proc markdownParser(rawData: string): string =
     ## splits file string into three parts; maxsplit = 2 to avoid accidental splits after header
     var lined = rawData.split("---", maxsplit = 2)[2]
@@ -46,6 +58,7 @@ proc getMarkdownAndMeta*(fileName: string): Future[(string, Meta)] {.async.} =
     except:
         raise newException(ValueError, fmt"{fileName} can't be found!")
 
+## ORIGINAL WORKING V1
 proc getMetaSeq*(): Future[seq[Meta]] {.async.} =
     ## Get sequence of blog meta (filename, date) [sorted by date]
     var filesMeta: seq[Meta] = @[]
@@ -60,6 +73,19 @@ proc getMetaSeq*(): Future[seq[Meta]] {.async.} =
     # sort seq[Meta] by date
     sort(filesMeta, (x, y) => parse(x.date, "MMMM d, yyyy") < parse(y.date,
             "MMMM d, yyyy"))
+
+    return filesMeta
+
+proc getMetaSeqTwo*(): Future[seq[Table[string, string]]] {.async.} =
+    ## Get sequence of blog meta (filename, date) [sorted by date]
+    var filesMeta: seq[Table[string, string]] = @[]
+
+    let filesInPath = toSeq(walkDir("./markdown", relative = true))
+    for file in filesInPath:
+        var fileData = openAsync(fmt"./markdown/{file.path}")
+        let data = await fileData.readAll()
+        filesMeta.add metaParserTwo(data, file.path.split(".")[0])
+        fileData.close()
 
     return filesMeta
 

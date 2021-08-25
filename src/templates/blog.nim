@@ -1,4 +1,4 @@
-import strtabs, strformat
+import strtabs, strformat, tables
 import karax/[karaxdsl, vdom]
 
 import ../utils/parsers
@@ -6,19 +6,19 @@ import share/head
 import share/navbar
 import share/footer
 
-proc blogIndexSection(parsedMetaSeq: seq[Meta]): VNode =
+proc blogIndexSection(parsedMetaSeq: seq[Table[string, string]]): VNode =
   result = buildHtml(main(class = "content")):
     tdiv(class = "main-container"):
       h2(class = "main-header"): text "Wildwood Tech Posts"
       ul(class = "index-list"):
         for meta in parsedMetaSeq:
           li:
-            a(class = "list-anchor", href = fmt"/blog/{meta.fileName}"):
+            a(class = "list-anchor", href = fmt"""/blog/{meta["fileName"]}"""):
               tdiv(class = "list-anchor__info"):
-                span(class = "info-title"): text meta.title
-                span(class = "info-date"): text meta.date
+                span(class = "info-title"): text meta["title"]
+                span(class = "info-date"): text meta["date"]
 
-proc blogIndex*(parsedMetaSeq: seq[Meta]): string =
+proc blogIndex*(parsedMetaSeq: seq[Table[string, string]]): string =
   let head = sharedHead("Blog")
   let navbar = sharedNav()
   let body = blogIndexSection(parsedMetaSeq)

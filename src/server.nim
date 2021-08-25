@@ -12,7 +12,7 @@ routes:
     redirect "/blog"
 
   get "/blog":
-    let parsedMetaSeq = await getMetaSeq()
+    let parsedMetaSeq = await getMetaSeqTwo()
     resp blogIndex(parsedMetaSeq)
 
   get "/blog/@blog":
