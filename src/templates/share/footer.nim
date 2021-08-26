@@ -8,6 +8,6 @@ proc sharedFooter*(): VNode =
         console.log("Service worker registered for scope: " + reg.scope);
         });
         }"""
-    script(): verbatim r"""console.log(`%cPowered by Nim {v0.9.1}!`, "color: #FFE220");"""
+    script(): verbatim r"""console.log(`%cPowered by Nim {v0.9.2}!`, "color: #FFE220");"""
 
   return vNode

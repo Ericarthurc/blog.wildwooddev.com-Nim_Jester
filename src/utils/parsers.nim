@@ -59,7 +59,7 @@ proc getMetaSeq*(): Future[seq[Meta]] {.async.} =
   for file in filesInPath:
     var fileData = openAsync(fmt"./markdown/{file.path}")
     let data = await fileData.readAll()
-    filesMeta.add metaParser(data, file.path.split(".")[0])
+    filesMeta.add metaParser(data, file.path.split(".m")[0])
     fileData.close()
 
   # sort seq[Meta] by date
@@ -72,11 +72,10 @@ proc getMetaSeq*(): Future[seq[Meta]] {.async.} =
     elif xa[^1] == ya[^1]:
       if months[xa[0].split(" ")[0]] < months[ya[0].split(" ")[0]]: 1
       elif months[xa[0].split(" ")[0]] == months[ya[0].split(" ")[0]]:
-        if xa[0].split(" ")[1] > ya[0].split(" ")[1]: 1
+        if xa[0].split(" ")[1] < ya[0].split(" ")[1]: 1
         else: -1
       else: -1
     else: -1)
-
 
   return filesMeta
 
