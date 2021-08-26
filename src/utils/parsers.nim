@@ -63,8 +63,6 @@ proc getMetaSeq*(): Future[seq[Meta]] {.async.} =
     fileData.close()
 
   # sort seq[Meta] by date
-  # sort(filesMeta, (x, y) => parse(x.date, "MMMM d, yyyy") < parse(y.date,
-  #         "MMMM d, yyyy"))
   sort(filesMeta, proc(x: Meta, y: Meta): int =
     var
       xa = x.date.split(",")
