@@ -1,4 +1,4 @@
-import strtabs, strformat
+import strformat
 import karax/[karaxdsl, vdom]
 
 import ../utils/parsers
@@ -19,10 +19,10 @@ proc blogIndexSection(parsedMetaSeq: seq[Meta]): VNode =
                 span(class = "info-date"): text meta.date
 
 proc blogIndex*(parsedMetaSeq: seq[Meta]): string =
-  let head = sharedHead("Blog")
+  let head = sharedHead("Blog", false)
   let navbar = sharedNav()
   let body = blogIndexSection(parsedMetaSeq)
-  let scripts = sharedFooter()
+  let scripts = sharedFooter(false)
   let vNode = buildHtml(html(lang = "en")):
     head
     navbar
@@ -44,10 +44,10 @@ proc blogSection(parsedMarkdown: string,
 
 proc blogPage*(title: string, parsedMarkdown: string,
     parsedMeta: Meta): string =
-  let head = sharedHead(parsedMeta.title)
+  let head = sharedHead(parsedMeta.title, true)
   let navbar = sharedNav()
   let body = blogSection(parsedMarkdown, parsedMeta)
-  let scripts = sharedFooter()
+  let scripts = sharedFooter(true)
   let vNode = buildHtml(html(lang = "en")):
     head
     navbar

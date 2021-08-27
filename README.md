@@ -1,6 +1,6 @@
 ## blog.wildwooddev.com-Nim_Jester
 
-### Site v0.9.2
+### Site v0.9.3
 
 #### Nim v1.4.8
 

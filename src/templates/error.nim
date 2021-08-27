@@ -1,21 +1,20 @@
 import strtabs, strformat
 import karax/[karaxdsl, vdom]
-import prologue
 
 import share/head
 import share/navbar
 import share/footer
 
-proc errorPage*(ctx: Context): string =
-  let head = sharedHead(ctx, "Series")
-  let navbar = sharedNav(ctx)
+proc errorPage*(): string =
+  let head = sharedHead("Series", true)
+  let navbar = sharedNav()
 
   let body = buildHtml(tdiv(class = "error-container")):
     pre:
       code(class = "language-powershell hljs"):
         span(class = "hljs-built_in"): text "Failed to connect to port"
 
-  let scripts = sharedFooter(ctx)
+  let scripts = sharedFooter(true)
   let vNode = buildHtml(html(lang = "en")):
     head
     navbar

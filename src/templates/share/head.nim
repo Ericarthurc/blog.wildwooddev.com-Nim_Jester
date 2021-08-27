@@ -1,6 +1,6 @@
 import karax/[karaxdsl, vdom]
 
-proc sharedHead*(title: string): VNode =
+proc sharedHead*(title: string, highlightEnabler: bool): VNode =
   let vNode = buildHtml(head):
     meta(charset = "UTF-8")
     meta(name = "viewport", content = "width=device-width, initial-scale=1.0")
@@ -21,5 +21,6 @@ proc sharedHead*(title: string): VNode =
     link(rel = "manifest", href = "/favicon/site.webmanifest")
     link(rel = "stylesheet", href = "/styles/main.css")
     link(rel = "stylesheet", href = "/styles/markdown.css")
-    script(src = "/js/highlight.min.js")
+    if highlightEnabler:
+      script(src = "/js/highlight.min.js")
   return vNode

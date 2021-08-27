@@ -1,4 +1,4 @@
-import strtabs, strformat
+import strformat
 import karax/[karaxdsl, vdom]
 
 import ../utils/parsers
@@ -18,10 +18,10 @@ proc seriesIndexSection(parsedSeriesSeq: seq[string]): VNode =
                 span(class = "info-title"): text series
 
 proc seriesIndex*(parsedSeriesSeq: seq[string]): string =
-  let head = sharedHead("Series")
+  let head = sharedHead("Series", false)
   let navbar = sharedNav()
   let body = seriesIndexSection(parsedSeriesSeq)
-  let scripts = sharedFooter()
+  let scripts = sharedFooter(false)
   let vNode = buildHtml(html(lang = "en")):
     head
     navbar
@@ -45,10 +45,10 @@ proc seriesSection(parsedMetaSeq: seq[Meta]): VNode =
                 span(class = "info-date"): text meta.date
 
 proc seriesPage*(parsedMetaSeq: seq[Meta]): string =
-  let head = sharedHead("Series")
+  let head = sharedHead("Series", false)
   let navbar = sharedNav()
   let body = seriesSection(parsedMetaSeq)
-  let scripts = sharedFooter()
+  let scripts = sharedFooter(false)
   let vNode = buildHtml(html(lang = "en")):
     head
     navbar
