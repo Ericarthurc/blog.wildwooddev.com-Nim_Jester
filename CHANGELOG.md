@@ -7,6 +7,17 @@ Addition of markdown posts will not be versioned or require a changelog update.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.9.4] - 2021-09-13
+
+### Added
+
+- server.nim | `error {Http401 .. Http408}: resp errorPage()` | error catching and redirection | willnbeed custom router rewrite once `redirect` bug is fixed
+
+### Changed
+
+- main.css | `html { background-color: #222530; }` | better contrast with navbar and blog items
+- main.css | `.info-date { padding-top: 5px; }` | removed padding from `.info-title` and added it to `.info-date` so `/series` `a` tags would be centered correctly
+
 ## [0.9.3] - 2021-08-26
 
 ### Changed

@@ -2,7 +2,7 @@ html {
   box-sizing: border-box;
   font-family: "Rubik", sans-serif;
   -webkit-tap-highlight-color: transparent;
-  background-color: #1e202a;
+  background-color: #222530;
   color: #ffffff;
 }
 
@@ -28,7 +28,6 @@ body {
 
 .navbar-link {
   padding: 0 8px;
-  /* font-weight: bold; */
   color: #ffffff;
   text-decoration: none;
 }
@@ -100,8 +99,6 @@ body {
 }
 
 .info-title {
-  /* text-transform: capitalize; */
-  padding-bottom: 5px;
   color: #eceff4;
   font-size: 16px;
   font-weight: bold;
@@ -112,6 +109,7 @@ body {
 }
 
 .info-date {
+  padding-top: 5px;
   font-size: 14px;
   color: #e5e9f0;
 }

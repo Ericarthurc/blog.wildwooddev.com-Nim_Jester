@@ -3,6 +3,7 @@ import asyncdispatch, jester
 import /utils/parsers
 import /templates/blog
 import /templates/series
+import /templates/error
 
 settings:
   port = Port(4003)
@@ -32,3 +33,6 @@ routes:
       resp seriesPage(parsedMetaSeq)
     except:
       resp Http404
+
+  error {Http401 .. Http408}:
+    resp errorPage()
