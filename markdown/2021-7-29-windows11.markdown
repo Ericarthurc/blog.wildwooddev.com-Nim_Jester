@@ -22,7 +22,7 @@ Hey Wildwood Staff, Windows 11 is upon us! This is a pretty weird launch and I w
 
 ## Launch Dates
 
-Windows 11 is offical out for public as of October 6th! If you are using a Windows run laptop you will start seeing the uprgade within the next few months; Microsoft is rolling the update out in cycles. There are manual ways to force the upgrade now, but I will explain that more below.
+Windows 11 is offical out for public as of October 6th! If you are using a Windows run laptop you will start seeing the upgrade within the next few months; Microsoft is rolling the update out in cycles. There are manual ways to force the upgrade now, but I will explain that more below.
 
 ## Wildwood Work Flow
 
